@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Detail skladby v hudobnej knižnici">
+  <title>Hudobná knižnica | Detail skladby</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Hudobná knižnica - úvod">
+        <img class="site-logo" src="logo.png" alt="">
+        <span>Hudobná knižnica</span>
+      </a>
+
+      <form class="header-search" role="search">
+        <label class="sr-only" for="song-search">Vyhľadávanie</label>
+        <input class="search-field" id="song-search" type="search" placeholder="Search">
+      </form>
+
+      <nav class="main-nav" aria-label="Hlavná navigácia">
+        <a href="index.html">Catalog</a>
+        <a href="song.html">Playlists</a>
+        <a href="song.html">My Music</a>
+        <a href="song.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="song-page">
+    <section class="song-overview" aria-labelledby="song-title">
+      <div>
+        <div class="cover-placeholder" role="img" aria-label="Zástupný obrázok obalu albumu">
+          <span class="image-icon" aria-hidden="true"></span>
+          <p class="cover-caption">Album Cover / Song Image</p>
+        </div>
+
+        <div class="audio-player" aria-label="Ovládanie prehrávania skladby">
+          <button class="play-button" type="button" aria-label="Prehrať skladbu">▷</button>
+          <div class="progress" aria-hidden="true"></div>
+          <span class="duration">01:23 / 03:45</span>
+          <span class="volume" aria-hidden="true">⌕</span>
+          <span class="volume-level" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <div class="song-info">
+        <h2 id="song-title">Song Title</h2>
+        <p class="artist-name">Artist Name</p>
+
+        <dl class="song-meta">
+          <dt>Album Name</dt>
+          <dd>Midnight Sessions</dd>
+          <dt>Genre</dt>
+          <dd>Indie / Alternative</dd>
+          <dt>Release Year</dt>
+          <dd>2024</dd>
+        </dl>
+
+        <div class="song-actions">
+          <button class="primary-button" type="button">Add to Playlist <span aria-hidden="true">⌄</span></button>
+          <button type="button">Edit / Delete</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews" aria-labelledby="reviews-title">
+      <h2 id="reviews-title">Reviews &amp; Rating</h2>
+      <div class="rating-card">
+        <span class="rating-label">Average Rating</span>
+        <div class="rating-summary">
+          <span class="rating-number">4.5 / 5</span>
+          <span class="rating-star" aria-hidden="true">★</span>
+          <span class="rating-count">(24 ratings)</span>
+        </div>
+
+        <div class="your-rating">
+          <span class="your-rating-label">Your Rating</span>
+          <div class="star-picker" role="group" aria-label="Vyberte hodnotenie od jednej do piatich hviezdičiek">
+            <button type="button" aria-label="1 hviezdička">☆</button>
+            <button type="button" aria-label="2 hviezdičky">☆</button>
+            <button type="button" aria-label="3 hviezdičky">☆</button>
+            <button type="button" aria-label="4 hviezdičky">☆</button>
+            <button type="button" aria-label="5 hviezdičiek">☆</button>
+          </div>
+          <button type="button">Save</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>Footer</span>
+  </footer>
+</body>
+</html>
