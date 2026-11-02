@@ -1,6 +1,7 @@
 <?php
 
 /** @var \Framework\Support\LinkGenerator $link */
+/** @var \App\Models\Song $song */
 ?>
 <section class="song-overview" aria-labelledby="song-title">
     <div>
@@ -19,21 +20,22 @@
     </div>
 
     <div class="song-info">
-        <h1 id="song-title">Názov skladby</h1>
-        <p class="artist-name">Meno interpreta</p>
+        <p class="eyebrow">Detail skladby</p>
+        <h1 id="song-title"><?= e($song->title) ?></h1>
+        <p class="artist-name"><?= e($song->artist) ?></p>
 
         <dl class="song-meta">
             <dt>Album</dt>
-            <dd>Nočné sessions</dd>
+            <dd><?= e($song->album ?? 'Neuvedený album') ?></dd>
             <dt>Žáner</dt>
-            <dd>Indie / alternatíva</dd>
+            <dd><?= e($song->genre ?? 'Neuvedený žáner') ?></dd>
             <dt>Rok vydania</dt>
-            <dd>2024</dd>
+            <dd><?= e($song->release_year ?? 'Neuvedený') ?></dd>
         </dl>
 
         <div class="song-actions">
-            <button class="primary-button" type="button">Pridať do playlistu <span aria-hidden="true">⌄</span></button>
-            <button type="button">Upraviť / odstrániť</button>
+            <a class="button primary-button" href="<?= $link->url('home.edit', ['id' => $song->id]) ?>">Upraviť skladbu</a>
+            <a class="button" href="<?= $link->url('home.index') ?>">Späť na katalóg</a>
         </div>
     </div>
 </section>
@@ -41,23 +43,7 @@
 <section class="reviews" aria-labelledby="reviews-title">
     <h2 id="reviews-title">Recenzie a hodnotenie</h2>
     <div class="rating-card">
-        <span class="rating-label">Priemerné hodnotenie</span>
-        <div class="rating-summary">
-            <span class="rating-number">4,5 / 5</span>
-            <span class="rating-star" aria-hidden="true">★</span>
-            <span class="rating-count">(24 hodnotení)</span>
-        </div>
-
-        <div class="your-rating">
-            <span class="your-rating-label">Vaše hodnotenie</span>
-            <div class="star-picker" role="group" aria-label="Vyberte hodnotenie od jednej do piatich hviezdičiek">
-                <button type="button" aria-label="1 hviezdička">☆</button>
-                <button type="button" aria-label="2 hviezdičky">☆</button>
-                <button type="button" aria-label="3 hviezdičky">☆</button>
-                <button type="button" aria-label="4 hviezdičky">☆</button>
-                <button type="button" aria-label="5 hviezdičiek">☆</button>
-            </div>
-            <button type="button">Uložiť</button>
-        </div>
+        <span class="rating-label">Hodnotenie</span>
+        <p class="detail-note">Hodnotenia budú dostupné v ďalšej etape aplikácie.</p>
     </div>
 </section>

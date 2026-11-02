@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Song;
 use Framework\Core\BaseController;
 use Framework\Http\Request;
 use Framework\Http\Responses\Response;
@@ -39,7 +40,8 @@ class HomeController extends BaseController
      */
     public function index(Request $request): Response
     {
-        return $this->html();
+        $songs = Song::getAll(orderBy: 'created_at DESC');
+        return $this->html(compact('songs'));
     }
 
     /**
@@ -49,6 +51,77 @@ class HomeController extends BaseController
      */
     public function song(Request $request): Response
     {
-        return $this->html();
+        $id = $request->get('id');
+        $song = $id !== null
+            ? Song::getOne($id)
+            : (Song::getAll(orderBy: 'id ASC', limit: 1)[0] ?? null);
+        if ($song === null) {
+            return $this->redirect($this->url('home.index'));
+        }
+
+        return $this->html(compact('song'));
+    }
+
+    public function create(Request $request): Response
+    {
+        return $this->html([
+            'song' => new Song(),
+            'formAction' => $this->url('home.store'),
+            'formTitle' => 'Pridanie novej skladby',
+        ], 'form');
+    }
+
+    public function store(Request $request): Response
+    {
+        if (!$request->isPost()) {
+            return $this->redirect($this->url('home.create'));
+        }
+
+        $song = new Song();
+        $song->setFromRequest($request);
+        $song->save();
+
+        return $this->redirect($this->url('home.index'));
+    }
+
+    public function edit(Request $request): Response
+    {
+        $song = Song::getOne($request->get('id'));
+        if ($song === null) {
+            return $this->redirect($this->url('home.index'));
+        }
+
+        return $this->html([
+            'song' => $song,
+            'formAction' => $this->url('home.update', ['id' => $song->id]),
+            'formTitle' => 'Úprava skladby',
+        ], 'form');
+    }
+
+    public function update(Request $request): Response
+    {
+        $song = Song::getOne($request->get('id'));
+        if ($song === null) {
+            return $this->redirect($this->url('home.index'));
+        }
+
+        if (!$request->isPost()) {
+            return $this->redirect($this->url('home.edit', ['id' => $song->id]));
+        }
+
+        $song->setFromRequest($request);
+        $song->save();
+
+        return $this->redirect($this->url('home.index'));
+    }
+
+    public function delete(Request $request): Response
+    {
+        $song = Song::getOne($request->get('id'));
+        if ($song !== null) {
+            $song->delete();
+        }
+
+        return $this->redirect($this->url('home.index'));
     }
 }

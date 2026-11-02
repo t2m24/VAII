@@ -27,7 +27,6 @@
 
         <nav class="main-nav" aria-label="Hlavná navigácia">
             <a href="<?= $link->url('home.index') ?>">Katalóg</a>
-            <a href="<?= $link->url('home.song') ?>">Detail skladby</a>
             <a href="#">Playlisty</a>
             <a href="#">Moja hudba</a>
             <a href="#">Prihlásiť sa</a>
