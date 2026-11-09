@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Album;
 use App\Models\Song;
 use Framework\Core\BaseController;
 use Framework\Http\Request;
@@ -66,6 +67,7 @@ class HomeController extends BaseController
     {
         return $this->html([
             'song' => new Song(),
+            'albums' => Album::getAll(orderBy: 'title ASC'),
             'formAction' => $this->url('home.store'),
             'formTitle' => 'Pridanie novej skladby',
         ], 'form');
@@ -93,6 +95,7 @@ class HomeController extends BaseController
 
         return $this->html([
             'song' => $song,
+            'albums' => Album::getAll(orderBy: 'title ASC'),
             'formAction' => $this->url('home.update', ['id' => $song->id]),
             'formTitle' => 'Úprava skladby',
         ], 'form');

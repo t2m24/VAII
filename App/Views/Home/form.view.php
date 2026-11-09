@@ -1,6 +1,7 @@
 <?php
 
 /** @var \App\Models\Song $song */
+/** @var \App\Models\Album[] $albums */
 /** @var string $formAction */
 /** @var string $formTitle */
 /** @var \Framework\Support\LinkGenerator $link */
@@ -24,8 +25,16 @@
                 <input id="artist" name="artist" type="text" value="<?= e($song->artist) ?>" required>
             </div>
             <div class="form-field">
-                <label for="album">Album</label>
-                <input id="album" name="album" type="text" value="<?= e($song->album ?? '') ?>">
+                <label for="album_id">Album</label>
+                <select id="album_id" name="album_id">
+                    <option value="">Bez albumu</option>
+                    <?php foreach ($albums as $album) { ?>
+                        <option value="<?= e($album->id) ?>"
+                            <?= $song->album_id === $album->id ? 'selected' : '' ?>>
+                            <?= e($album->title) ?> — <?= e($album->artist) ?>
+                        </option>
+                    <?php } ?>
+                </select>
             </div>
             <div class="form-field">
                 <label for="genre">Žáner</label>

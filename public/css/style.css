@@ -290,10 +290,42 @@ main {
   font: inherit;
 }
 
+.form-field select {
+  width: 100%;
+  min-height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+}
+
 .form-actions {
   display: flex;
   gap: 12px;
   margin-top: 24px;
+}
+
+.album-meta {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 28px;
+  font-size: 14px;
+}
+
+.album-meta dt {
+  color: var(--muted);
+}
+
+.album-meta dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.section-title {
+  margin: 0 0 14px;
+  font-size: 20px;
 }
 
 .song-page {

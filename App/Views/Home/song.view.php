@@ -3,6 +3,7 @@
 /** @var \Framework\Support\LinkGenerator $link */
 /** @var \App\Models\Song $song */
 ?>
+<?php $album = $song->getAlbum(); ?>
 <section class="song-overview" aria-labelledby="song-title">
     <div>
         <div class="cover-placeholder" role="img" aria-label="Zástupný obrázok obalu albumu">
@@ -26,7 +27,13 @@
 
         <dl class="song-meta">
             <dt>Album</dt>
-            <dd><?= e($song->album ?? 'Neuvedený album') ?></dd>
+            <dd>
+                <?php if ($album !== null) { ?>
+                    <a href="<?= $link->url('album.show', ['id' => $album->id]) ?>"><?= e($album->title) ?></a>
+                <?php } else { ?>
+                    Neuvedený album
+                <?php } ?>
+            </dd>
             <dt>Žáner</dt>
             <dd><?= e($song->genre ?? 'Neuvedený žáner') ?></dd>
             <dt>Rok vydania</dt>

@@ -40,7 +40,7 @@
                             </a>
                         </th>
                         <td><?= e($song->artist) ?></td>
-                        <td><?= e($song->album ?? '—') ?></td>
+                        <td><?= e($song->getAlbum()?->title ?? '—') ?></td>
                         <td><?= e($song->genre ?? '—') ?></td>
                         <td><?= e($song->release_year ?? '—') ?></td>
                         <td class="table-actions">

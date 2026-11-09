@@ -11,16 +11,25 @@ class Song extends Model
     protected static ?array $fillable = [
         'title',
         'artist',
-        'album',
         'genre',
         'release_year',
+        'album_id',
     ];
 
     public ?int $id = null;
     public string $title = '';
     public string $artist = '';
-    public ?string $album = null;
+    public ?int $album_id = null;
     public ?string $genre = null;
     public ?int $release_year = null;
     public ?string $created_at = null;
+
+    public function getAlbum(): ?Album
+    {
+        if ($this->album_id === null) {
+            return null;
+        }
+
+        return $this->getOneRelated(Album::class, 'album_id');
+    }
 }
