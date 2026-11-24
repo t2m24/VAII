@@ -11,6 +11,7 @@
     <meta name="description" content="Hudobná knižnica a správa playlistov">
     <title><?= App\Configuration::APP_NAME ?></title>
     <link rel="stylesheet" href="<?= $link->asset('css/style.css') ?>">
+    <script src="<?= $link->asset('js/script.js') ?>" defer></script>
 </head>
 <body>
 <header class="site-header">

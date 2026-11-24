@@ -18,8 +18,42 @@
             <a href="<?= $link->url('home.create') ?>">Pridajte prvú skladbu</a>
         </div>
     <?php } else { ?>
+        <div class="catalog-controls" data-catalog-controls>
+            <div class="form-field">
+                <label for="catalog-search">Hľadať skladbu</label>
+                <input id="catalog-search" type="search" data-filter="search"
+                       placeholder="Názov, interpret, album alebo žáner">
+            </div>
+            <div class="form-field">
+                <label for="catalog-genre">Žáner</label>
+                <select id="catalog-genre" data-filter="genre">
+                    <option value="">Všetky žánre</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="catalog-year-from">Rok od</label>
+                <input id="catalog-year-from" type="number" min="0" max="2100" data-filter="year-from">
+            </div>
+            <div class="form-field">
+                <label for="catalog-year-to">Rok do</label>
+                <input id="catalog-year-to" type="number" min="0" max="2100" data-filter="year-to">
+            </div>
+            <div class="form-field">
+                <label for="catalog-sort">Zoradiť</label>
+                <select id="catalog-sort" data-filter="sort">
+                    <option value="original">Pôvodné poradie</option>
+                    <option value="title-asc">Názov (A – Z)</option>
+                    <option value="title-desc">Názov (Z – A)</option>
+                    <option value="artist-asc">Interpret (A – Z)</option>
+                    <option value="year-desc">Najnovšie vydania</option>
+                    <option value="year-asc">Najstaršie vydania</option>
+                </select>
+            </div>
+            <button class="button" type="button" data-filter-reset>Vymazať filtre</button>
+            <p class="catalog-result-count" data-result-count aria-live="polite"></p>
+        </div>
         <div class="song-table-wrapper">
-            <table class="song-table">
+            <table class="song-table" data-song-catalog>
                 <caption class="sr-only">Zoznam skladieb</caption>
                 <thead>
                 <tr>
